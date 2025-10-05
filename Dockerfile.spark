@@ -1,0 +1,31 @@
+FROM openjdk:17-slim
+# install system dependences
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y \
+    curl \
+    python3 \
+    python3-pip \
+    procps \
+    && rm -rf /var/lib/apt/lists/*
+# Install Spark (versão 3.5.0 + Hadoop 3)
+# Instalar Spark (versão 3.5.0 + Hadoop 3)
+ENV SPARK_VERSION=3.5.0
+ENV HADOOP_VERSION=3
+ENV SPARK_HOME=/opt/spark
+ENV PATH=$SPARK_HOME/bin:$PATH
+#Downloading Spark package
+RUN curl -fSL# https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz \
+    -o /tmp/spark.tgz && \
+    tar -xzf /tmp/spark.tgz -C /opt && \
+    mv /opt/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION} ${SPARK_HOME} && \
+    rm /tmp/spark.tgz
+
+# Coping application
+# Copiar a aplicação
+WORKDIR /opt/app
+COPY app/ /opt/app/
+# Installing Python dependences
+# Instalar dependências Python
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+CMD ["spark-submit", "--master", "local[*]", "/opt/app/main.py"]
