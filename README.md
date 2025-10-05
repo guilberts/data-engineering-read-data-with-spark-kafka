@@ -17,13 +17,13 @@ The project simulates a complete data pipeline that:
 
 
 ## 📁 Project Structure
+
 📁 pyspark-kafka-pipeline/
 ├── 🐳 docker-compose.yml # Container orchestration
 ├── 📝 README.md # Project documentation
 ├── 🐍 main.py # Main PySpark application
 ├── 📋 requirements.txt # Python dependencies
 └── 🐋 Dockerfile.spark # Spark Docker image
-
 
 ## 🚀 Quick Start
 
