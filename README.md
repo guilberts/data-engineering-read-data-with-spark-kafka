@@ -10,21 +10,23 @@ The project simulates a complete data pipeline that:
 - Consumes and displays results in the console
 
 ## 🏗️ Architecture
+```sh
 +----------------+ +-------------+ +-----------------+ +---------------+
 | Data Generator | --> | Kafka Topic | --> | Spark Streaming | --> | Console Output|
 | (Producer) | | (test-topic)| | (Consumer) | | |
 +----------------+ +-------------+ +-----------------+ +---------------+
-
+```
 
 ## 📁 Project Structure
 
 📁 pyspark-kafka-pipeline/
+```sh
 ├── 🐳 docker-compose.yml # Container orchestration
 ├── 📝 README.md # Project documentation
 ├── 🐍 main.py # Main PySpark application
 ├── 📋 requirements.txt # Python dependencies
 └── 🐋 Dockerfile.spark # Spark Docker image
-
+```
 ## 🚀 Quick Start
 
 ### Prerequisites
